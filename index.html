@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Than Htike Soe — Cloud & DevOps Engineer. AWS, Azure, Kubernetes, Terraform, CI/CD. Portfolio of infrastructure, automation and platform engineering work." />
+  <title>Than Htike Soe | Cloud & DevOps Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Inter"', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+          colors: {
+            base: '#0a0f1a',
+            surface: '#0f1726',
+            neon: '#22d3ee',
+            neonalt: '#34d399',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --glow: 0 0 20px rgba(34, 211, 238, .35);
+    }
+    body {
+      background-color: #0a0f1a;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 211, 238, .12), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 40%, rgba(52, 211, 153, .06), transparent);
+      background-attachment: fixed;
+    }
+    .glass {
+      background: rgba(255, 255, 255, .03);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+    .glass-hover:hover {
+      border-color: rgba(34, 211, 238, .35);
+      box-shadow: var(--glow);
+      transform: translateY(-4px);
+    }
+    .glow-text {
+      text-shadow: 0 0 18px rgba(34, 211, 238, .5);
+    }
+    .gradient-border {
+      position: relative;
+      background:
+        linear-gradient(#0f1726, #0f1726) padding-box,
+        linear-gradient(135deg, rgba(34, 211, 238, .6), rgba(52, 211, 153, .4)) border-box;
+      border: 1px solid transparent;
+    }
+    .terminal {
+      background: #060a12;
+    }
+    .cursor::after {
+      content: '▋';
+      animation: blink 1s steps(2) infinite;
+      color: #22d3ee;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(34, 211, 238, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, .05) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+  </style>
+</head>
+
+<body class="font-sans text-slate-300 antialiased selection:bg-cyan-400/30 selection:text-cyan-100">
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-base/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4" aria-label="Main navigation">
+      <a href="#top" class="font-mono text-sm font-bold tracking-widest text-white">
+        <span class="text-neon">~/</span>thanhtikesoe
+      </a>
+      <ul class="hidden items-center gap-8 text-sm font-medium md:flex">
+        <li><a href="#about" class="transition hover:text-neon">About</a></li>
+        <li><a href="#skills" class="transition hover:text-neon">Skills</a></li>
+        <li><a href="#experience" class="transition hover:text-neon">Experience</a></li>
+        <li><a href="#projects" class="transition hover:text-neon">Projects</a></li>
+        <li><a href="#labs" class="transition hover:text-neon">Labs</a></li>
+        <li><a href="#certifications" class="transition hover:text-neon">Certifications</a></li>
+        <li><a href="#contact" class="rounded-lg bg-neon/10 px-4 py-2 text-neon ring-1 ring-neon/30 transition hover:bg-neon/20 hover:shadow-[0_0_20px_rgba(34,211,238,.3)]">Contact</a></li>
+      </ul>
+      <button id="menuBtn" class="rounded-md p-2 text-slate-300 hover:bg-white/5 md:hidden" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-6 w-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+        </svg>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="hidden border-t border-white/5 bg-base/95 px-6 py-4 md:hidden">
+      <ul class="flex flex-col gap-4 text-sm font-medium">
+        <li><a href="#about" class="block py-1 transition hover:text-neon">About</a></li>
+        <li><a href="#skills" class="block py-1 transition hover:text-neon">Skills</a></li>
+        <li><a href="#experience" class="block py-1 transition hover:text-neon">Experience</a></li>
+        <li><a href="#projects" class="block py-1 transition hover:text-neon">Projects</a></li>
+        <li><a href="#labs" class="block py-1 transition hover:text-neon">Labs</a></li>
+        <li><a href="#certifications" class="block py-1 transition hover:text-neon">Certifications</a></li>
+        <li><a href="#contact" class="block py-1 text-neon transition hover:text-cyan-200">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top" class="overflow-hidden">
+
+    <!-- ===== HERO ===== -->
+    <section class="relative grid-bg flex min-h-screen items-center px-6 pt-28 pb-16" id="hero">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.2fr_.8fr]">
+        <div class="reveal in-view">
+          <p class="font-mono text-sm text-neon glow-text">$ whoami</p>
+          <h1 class="mt-3 text-4xl font-extrabold leading-tight text-white sm:text-6xl">
+            Than Htike Soe
+          </h1>
+          <p class="mt-4 font-mono text-lg text-neonalt sm:text-2xl">
+            Cloud &amp; DevOps Engineer
+          </p>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
+            Motivated professional with over two years of experience as a DevOps Engineer,
+            building on a strong background in networking. Detail-oriented team player dedicated
+            to delivering robust cloud infrastructure and automation results.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#contact" class="rounded-lg bg-neon px-6 py-3 text-sm font-semibold text-base transition hover:bg-cyan-300 hover:shadow-[0_0_25px_rgba(34,211,238,.5)]">
+              Get in touch
+            </a>
+            <a href="#projects" class="rounded-lg border border-white/10 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-neon/50 hover:text-neon">
+              View my work
+            </a>
+          </div>
+
+          <div class="mt-10 flex flex-wrap gap-6 text-sm">
+            <a class="group flex items-center gap-2 text-slate-400 transition hover:text-neon" href="https://www.linkedin.com/in/than-htike-soe-07b77925a" target="_blank" rel="noopener noreferrer">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+              LinkedIn
+            </a>
+            <a class="group flex items-center gap-2 text-slate-400 transition hover:text-neon" href="https://github.com/tahs01" target="_blank" rel="noopener noreferrer">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.11-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.97 10.97 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.15 0 .31.21.67.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+              GitHub
+            </a>
+            <a class="flex items-center gap-2 text-slate-400 transition hover:text-neon" href="tel:+959984986349">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25z"/></svg>
+              +959 984 986 349
+            </a>
+          </div>
+        </div>
+
+        <!-- Terminal card -->
+        <div class="reveal in-view hidden lg:block">
+          <div class="gradient-border rounded-2xl overflow-hidden">
+            <div class="terminal rounded-2xl shadow-2xl">
+              <div class="flex items-center gap-2 border-b border-white/5 px-4 py-3">
+                <span class="h-3 w-3 rounded-full bg-rose-500/80"></span>
+                <span class="h-3 w-3 rounded-full bg-amber-400/80"></span>
+                <span class="h-3 w-3 rounded-full bg-emerald-400/80"></span>
+                <span class="ml-3 font-mono text-xs text-slate-500">devops@engineer: ~/portfolio</span>
+              </div>
+              <div class="p-6 font-mono text-sm leading-8">
+                <p class="text-slate-500">$ whoami</p>
+                <p class="text-white">than_htike_soe</p>
+                <p class="text-slate-500 mt-2">$ cat roles.txt</p>
+                <p class="text-neon">Cloud &amp; DevOps Engineer</p>
+                <p class="text-slate-500 mt-2">$ terraform apply --auto-approve</p>
+                <p class="text-emerald-400">Apply complete! Resources: 42 added, 0 changed, 0 destroyed.</p>
+                <p class="text-slate-500 mt-2">$ kubectl get pods --all-namespaces</p>
+                <p class="text-slate-400">NAMESPACE&nbsp;&nbsp;POD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;AGE</p>
+                <p class="text-slate-400">infra&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;everything-ok&nbsp;&nbsp;<span class="text-emerald-400">Running</span>&nbsp;&nbsp;2y</p>
+                <p class="text-slate-500 mt-2 cursor">$ </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pointer-events-none absolute inset-x-0 bottom-8 flex justify-center text-slate-600">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 animate-bounce"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="px-6 py-24">
+      <div class="mx-auto max-w-7xl">
+        <p class="font-mono text-sm text-neon">// 01. about_me</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">About Me</h2>
+        <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_1fr]">
+          <div class="reveal glass rounded-2xl p-8">
+            <p class="leading-relaxed text-slate-400">
+              I'm a Cloud &amp; DevOps Engineer with over two years of hands-on experience designing,
+              deploying, and operating cloud infrastructure across <span class="text-neon">AWS</span> and
+              <span class="text-neon">Azure</span>. My career began in networking — with CCNA and CCNP
+              foundations — which gives me a strong grasp of the full stack, from the wire up to the container.
+            </p>
+            <p class="mt-4 leading-relaxed text-slate-400">
+              I specialize in containerization, orchestration, infrastructure as code, and automated
+              configuration management. I enjoy turning complex monolithic and microservice deployments
+              into reliable, self-healing systems.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="rounded-full bg-neon/10 px-3 py-1 font-mono text-xs text-neon ring-1 ring-neon/20">infra-as-code</span>
+              <span class="rounded-full bg-neonalt/10 px-3 py-1 font-mono text-xs text-neonalt ring-1 ring-neonalt/20">automation</span>
+              <span class="rounded-full bg-cyan-400/10 px-3 py-1 font-mono text-xs text-cyan-300 ring-1 ring-cyan-400/20">reliability</span>
+              <span class="rounded-full bg-emerald-400/10 px-3 py-1 font-mono text-xs text-emerald-300 ring-1 ring-emerald-400/20">networking</span>
+            </div>
+          </div>
+          <div class="reveal glass rounded-2xl p-8">
+            <h3 class="font-mono text-sm font-semibold text-white">Personal Info</h3>
+            <dl class="mt-6 space-y-4 text-sm">
+              <div class="flex justify-between border-b border-white/5 pb-3">
+                <dt class="text-slate-500">Location</dt>
+                <dd class="text-slate-300 text-right">No 30, MoeMaKha St,<br />Sanchaung Tps</dd>
+              </div>
+              <div class="flex justify-between border-b border-white/5 pb-3">
+                <dt class="text-slate-500">Phone</dt>
+                <dd class="text-slate-300"><a href="tel:+959984986349" class="hover:text-neon">+959 984 986 349</a></dd>
+              </div>
+              <div class="flex justify-between border-b border-white/5 pb-3">
+                <dt class="text-slate-500">Email</dt>
+                <dd class="text-slate-300 break-all"><a href="mailto:thanhtikesoe.mc@gmail.com" class="hover:text-neon">thanhtikesoe.mc@gmail.com</a></dd>
+              </div>
+              <div class="flex justify-between border-b border-white/5 pb-3">
+                <dt class="text-slate-500">LinkedIn</dt>
+                <dd class="text-slate-300"><a href="https://www.linkedin.com/in/than-htike-soe-07b77925a" target="_blank" rel="noopener noreferrer" class="hover:text-neon">than-htike-soe</a></dd>
+              </div>
+              <div class="flex justify-between">
+                <dt class="text-slate-500">GitHub</dt>
+                <dd class="text-slate-300"><a href="https://github.com/tahs01" target="_blank" rel="noopener noreferrer" class="hover:text-neon">@tahs01</a></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="px-6 py-24">
+      <div class="mx-auto max-w-7xl">
+        <p class="font-mono text-sm text-neon">// 02. skills</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Core Skills &amp; Expertise</h2>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <!-- Cloud & Infrastructure -->
+          <div class="reveal glass glass-hover rounded-2xl p-6 transition duration-300">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-neon/10 text-neon ring-1 ring-neon/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15z" /></svg>
+            </div>
+            <h3 class="mt-5 font-semibold text-white">Cloud &amp; Infrastructure</h3>
+            <ul class="mt-4 space-y-2 text-sm text-slate-400">
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>AWS</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Azure</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Alibaba Cloud</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Linux Server Administration</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>CCNA / CCNP (Encore)</li>
+            </ul>
+          </div>
+
+          <!-- Containerization -->
+          <div class="reveal glass glass-hover rounded-2xl p-6 transition duration-300">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-neonalt/10 text-neonalt ring-1 ring-neonalt/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 7.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5zm-7.5 0a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5zm7.5 7.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5zm-7.5 0a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5zm7.5 7.5a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5zM9 12a2.25 2.25 0 1 0 0-4.5A2.25 2.25 0 0 0 9 12zm6 0a2.25 2.25 0 1 0 0-4.5A2.25 2.25 0 0 0 15 12z" /></svg>
+            </div>
+            <h3 class="mt-5 font-semibold text-white">Containerization &amp; Orchestration</h3>
+            <ul class="mt-4 space-y-2 text-sm text-slate-400">
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Kubernetes</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Docker</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Helm</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Istio</li>
+            </ul>
+          </div>
+
+          <!-- Automation & IaC -->
+          <div class="reveal glass glass-hover rounded-2xl p-6 transition duration-300">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300 ring-1 ring-cyan-400/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-687M12 21c-2.773 0-5.491-.235-8.135-.687" /></svg>
+            </div>
+            <h3 class="mt-5 font-semibold text-white">Automation &amp; IaC</h3>
+            <ul class="mt-4 space-y-2 text-sm text-slate-400">
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Terraform / CloudFormation</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Ansible</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Git CI / CI/CD Pipelines</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>UNIX Scripting</li>
+            </ul>
+          </div>
+
+          <!-- Key Responsibilities -->
+          <div class="reveal glass glass-hover rounded-2xl p-6 transition duration-300">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-400/20">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" /></svg>
+            </div>
+            <h3 class="mt-5 font-semibold text-white">Key Responsibilities</h3>
+            <ul class="mt-4 space-y-2 text-sm text-slate-400">
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Cloud Infrastructure</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Containerization</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Server Administration</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Microservices Deployment</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Infrastructure as Code</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Config Management</li>
+              <li class="flex items-center gap-2"><span class="text-neon">▸</span>Architecting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience" class="px-6 py-24">
+      <div class="mx-auto max-w-7xl">
+        <p class="font-mono text-sm text-neon">// 03. experience</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Professional Experience</h2>
+
+        <div class="relative mt-12 space-y-10 border-l border-white/10 pl-8 lg:pl-12">
+          <div class="reveal relative">
+            <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full bg-neon shadow-[0_0_12px_rgba(34,211,238,.8)] lg:-left-[61px]"></span>
+            <div class="glass rounded-2xl p-7 transition duration-300 hover:border-neon/30 hover:shadow-[var(--glow)]">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-semibold text-white">Site Reliability Engineer</h3>
+                <span class="rounded-full bg-neon/10 px-3 py-1 font-mono text-xs text-neon ring-1 ring-neon/20">2025 — Present</span>
+              </div>
+              <p class="mt-1 font-mono text-sm text-neonalt">@ Onenex</p>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-400">
+                <li class="flex gap-3"><span class="text-neon">▸</span>Maintain and ensure the reliability of AWS-based infrastructures.</li>
+                <li class="flex gap-3"><span class="text-neon">▸</span>Manage and configure infrastructures across multiple projects for microservices and monolithic architectures.</li>
+                <li class="flex gap-3"><span class="text-neon">▸</span>Implement automation processes including CI/CD pipelines and configuration management.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="reveal relative">
+            <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full bg-neonalt shadow-[0_0_12px_rgba(52,211,153,.8)] lg:-left-[61px]"></span>
+            <div class="glass rounded-2xl p-7 transition duration-300 hover:border-neonalt/30 hover:shadow-[var(--glow)]">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-semibold text-white">DevOps Engineer</h3>
+                <span class="rounded-full bg-neonalt/10 px-3 py-1 font-mono text-xs text-neonalt ring-1 ring-neonalt/20">2024 — 2025</span>
+              </div>
+              <p class="mt-1 font-mono text-sm text-neonalt">@ BetterHR</p>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-400">
+                <li class="flex gap-3"><span class="text-neon">▸</span>Lead entire infrastructure in AWS and Azure.</li>
+                <li class="flex gap-3"><span class="text-neon">▸</span>Manage Dockerization process in production and development environments.</li>
+                <li class="flex gap-3"><span class="text-neon">▸</span>Oversee automation, CI/CD pipelines, configuration management (Ansible, Git CI, UNIX scripting), and Linux server administration.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="reveal relative">
+            <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,.8)] lg:-left-[61px]"></span>
+            <div class="glass rounded-2xl p-7 transition duration-300 hover:border-cyan-400/30 hover:shadow-[var(--glow)]">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-semibold text-white">Network Operation Center Engineer</h3>
+                <span class="rounded-full bg-cyan-400/10 px-3 py-1 font-mono text-xs text-cyan-300 ring-1 ring-cyan-400/20">2023 — 2024</span>
+              </div>
+              <p class="mt-1 font-mono text-sm text-neonalt">@ BIM Groups of Companies <span class="text-slate-500">(Contractor at Wave Money)</span></p>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-400">
+                <li class="flex gap-3"><span class="text-neon">▸</span>Monitored application services, networking, servers, and VM health.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="reveal relative">
+            <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,.8)] lg:-left-[61px]"></span>
+            <div class="glass rounded-2xl p-7 transition duration-300 hover:border-emerald-400/30 hover:shadow-[var(--glow)]">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-semibold text-white">Network Operation Center Engineer</h3>
+                <span class="rounded-full bg-emerald-400/10 px-3 py-1 font-mono text-xs text-emerald-300 ring-1 ring-emerald-400/20">2022 — 2023</span>
+              </div>
+              <p class="mt-1 font-mono text-sm text-neonalt">@ Myanmar SpeedNet</p>
+              <ul class="mt-4 space-y-2 text-sm leading-relaxed text-slate-400">
+                <li class="flex gap-3"><span class="text-neon">▸</span>Monitored link states, network devices, and customer complaint tickets.</li>
+                <li class="flex gap-3"><span class="text-neon">▸</span>Configured OLTs for new users with GPON technology and participated in network-wide migration projects.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED PROJECTS ===== -->
+    <section id="projects" class="px-6 py-24">
+      <div class="mx-auto max-w-7xl">
+        <p class="font-mono text-sm text-neon">// 04. featured_projects</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Featured Projects &amp; Enterprise Platforms</h2>
+        <p class="mt-4 max-w-2xl text-slate-400">Production platforms I helped architect, deploy, and keep reliable.</p>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <article class="reveal group glass glass-hover flex flex-col rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-neon/10 text-neon ring-1 ring-neon/20">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+              </div>
+              <span class="rounded-full bg-neon/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-neon ring-1 ring-neon/20">SaaS</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white group-hover:text-neon">BetterHR</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">Modern full-suite cloud HR &amp; Payroll SaaS platform serving the APAC region.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="font-mono text-xs text-slate-500">AWS</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">K8s</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">Docker</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">CI/CD</span>
+            </div>
+            <a href="https://betterhr.io/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neon transition group-hover:gap-3">
+              Visit site
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+
+          <article class="reveal group glass glass-hover flex flex-col rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-neonalt/10 text-neonalt ring-1 ring-neonalt/20">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008z" /></svg>
+              </div>
+              <span class="rounded-full bg-neonalt/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-neonalt ring-1 ring-neonalt/20">Platform</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white group-hover:text-neon">BetterJobs</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">Jobs search platform connecting employers and talent at scale.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="font-mono text-xs text-slate-500">Microservices</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">Azure</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">Ansible</span>
+            </div>
+            <a href="https://betterjobs.co/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neon transition group-hover:gap-3">
+              Visit site
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+
+          <article class="reveal group glass glass-hover flex flex-col rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400/10 text-cyan-300 ring-1 ring-cyan-400/20">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25z" /></svg>
+              </div>
+              <span class="rounded-full bg-cyan-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-cyan-300 ring-1 ring-cyan-400/20">Platform</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white group-hover:text-neon">Pocket</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">Digital lifestyle platform delivering everyday services online.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="font-mono text-xs text-slate-500">AWS</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">Docker</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">IaC</span>
+            </div>
+            <a href="https://pocket.com.mm/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neon transition group-hover:gap-3">
+              Visit site
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+
+          <article class="reveal group glass glass-hover flex flex-col rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-400/20">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" /></svg>
+              </div>
+              <span class="rounded-full bg-emerald-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-emerald-300 ring-1 ring-emerald-400/20">Enterprise</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white group-hover:text-neon">Yoma Connect &amp; Social</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">HR management and employee social platform for large organizations.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="font-mono text-xs text-slate-500">Azure</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">K8s</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">Terraform</span>
+            </div>
+            <a href="https://social.yoma.com.mm/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neon transition group-hover:gap-3">
+              Visit site
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+
+          <article class="reveal group glass glass-hover flex flex-col rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-400/10 text-amber-300 ring-1 ring-amber-400/20">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6a.75.75 0 0 1-.75.75h-.75v2.25a2.25 2.25 0 0 1-2.25 2.25h-.75v2.25h-.75a2.25 2.25 0 0 0-2.25 2.25v.75h-.75a.75.75 0 0 1 0-1.5h.75V12h.75a2.25 2.25 0 0 0 2.25-2.25V9h.75a.75.75 0 0 1 0 1.5h-.75v.75h1.5v-2.25h.75a.75.75 0 0 1 0 1.5H13.5v.75h1.5a.75.75 0 0 1 0 1.5h-.75v.75h.75a.75.75 0 0 1 0 1.5h-1.5v1.5h1.5a.75.75 0 0 1 0 1.5H12v1.5a.75.75 0 0 1-1.5 0v-1.5H9a.75.75 0 0 1 0-1.5h1.5V12h-.75a.75.75 0 0 1 0-1.5h1.5V9h-.75a.75.75 0 0 1 0-1.5h2.25V6h-.75a.75.75 0 0 1 0-1.5h2.25V3.75a.75.75 0 0 1 1.5 0V4.5h1.5a.75.75 0 0 1 0 1.5h-1.5v.75h.75a.75.75 0 0 1 0 1.5z" /></svg>
+              </div>
+              <span class="rounded-full bg-amber-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-amber-300 ring-1 ring-amber-400/20">Platform</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white group-hover:text-neon">Tikkat</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">Online ticketing platform for events across Myanmar.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="font-mono text-xs text-slate-500">AWS</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">EKS</span><span class="text-slate-600">·</span>
+              <span class="font-mono text-xs text-slate-500">CI/CD</span>
+            </div>
+            <a href="https://tikkat.com.mm/" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neon transition group-hover:gap-3">
+              Visit site
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MINI PROJECTS / LABS ===== -->
+    <section id="labs" class="px-6 py-24">
+      <div class="mx-auto max-w-7xl">
+        <p class="font-mono text-sm text-neon">// 05. labs</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Mini-Projects &amp; Technical Labs</h2>
+        <p class="mt-4 max-w-2xl text-slate-400">Hands-on experiments exploring cloud, Kubernetes, and CI/CD patterns.</p>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <article class="reveal group glass glass-hover rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-slate-500">MP-01</span>
+              <span class="rounded-full bg-neon/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-neon ring-1 ring-neon/20">IaC</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-white group-hover:text-neon">Terraform Cloud &amp; AWS</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">Provisioned VPC, EC2 instances, and Aurora RDS using reusable Terraform modules.</p>
+            <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs text-slate-500">
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">Terraform</span>
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">AWS</span>
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">RDS</span>
+            </div>
+            <a href="https://tahs.notion.site/Mini-project-06-Terraform-Cloud-and-AWS-dafa285cccff49d2a115c92f05140fe3?pvs=4" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neonalt transition group-hover:gap-3">
+              View lab notes
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+
+          <article class="reveal group glass glass-hover rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-slate-500">MP-02</span>
+              <span class="rounded-full bg-neonalt/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-neonalt ring-1 ring-neonalt/20">K8s</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-white group-hover:text-neon">Node.js App on K8s</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">Deployed a Node.js application on Kubernetes and validated service access via port forwarding.</p>
+            <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs text-slate-500">
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">Node.js</span>
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">Kubernetes</span>
+            </div>
+            <a href="https://tahs.notion.site/Mini-Project-01-Deploying-Nodejs-App-using-K8s-cf53b18f03a74d1385f81686b899d2a7?pvs=4" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neonalt transition group-hover:gap-3">
+              View lab notes
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+
+          <article class="reveal group glass glass-hover rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-slate-500">MP-03</span>
+              <span class="rounded-full bg-cyan-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-cyan-300 ring-1 ring-cyan-400/20">EKS + CI/CD</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-white group-hover:text-neon">Docker 101 in EKS</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">Deployed the Docker 101 image on EKS with GitHub Actions powering the CI/CD pipeline.</p>
+            <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs text-slate-500">
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">EKS</span>
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">Docker</span>
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">GitHub Actions</span>
+            </div>
+            <a href="https://tahs.notion.site/Mini-Project-02-Deploying-Docker-101-image-in-K8s-using-EKS-08681149db274243930763b72a1897f4?pvs=4" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neonalt transition group-hover:gap-3">
+              View lab notes
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+
+          <article class="reveal group glass glass-hover rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-slate-500">MP-04</span>
+              <span class="rounded-full bg-emerald-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-emerald-300 ring-1 ring-emerald-400/20">Service Mesh</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-white group-hover:text-neon">Traffic-Shifting with Istio</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">Implemented traffic management on Kubernetes using Istio sidecar proxy with label-based ejection.</p>
+            <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs text-slate-500">
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">Istio</span>
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">Kubernetes</span>
+            </div>
+            <a href="https://tahs.notion.site/Mini-Project-03-Traffic-Shifting-e954ff60b2b54816b9d5cba577e67a08?pvs=4" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neonalt transition group-hover:gap-3">
+              View lab notes
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+
+          <article class="reveal group glass glass-hover rounded-2xl p-7 transition duration-300">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs text-slate-500">MP-05</span>
+              <span class="rounded-full bg-amber-400/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-amber-300 ring-1 ring-amber-400/20">CI/CD</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold text-white group-hover:text-neon">ToDoApp CI/CD Test</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-400">Tested a full CI/CD loop deploying an HTML-based ToDoApp on an EKS cluster with GitHub Actions.</p>
+            <div class="mt-4 flex flex-wrap gap-2 font-mono text-xs text-slate-500">
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">GitHub Actions</span>
+              <span class="rounded-md bg-white/5 px-2 py-1 ring-1 ring-white/10">EKS</span>
+            </div>
+            <a href="https://tahs.notion.site/Mini-Project-05-for-CI-CD-using-Terraform-Cloud-on-progress-ece04fa6ba0347a18d2f1f4fccf303ad?pvs=4" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-neonalt transition group-hover:gap-3">
+              View lab notes
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CERTIFICATIONS & EDUCATION ===== -->
+    <section id="certifications" class="px-6 py-24">
+      <div class="mx-auto max-w-7xl">
+        <p class="font-mono text-sm text-neon">// 06. credentials</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Certifications &amp; Education</h2>
+
+        <div class="mt-10 grid gap-6 lg:grid-cols-2">
+          <!-- Certifications -->
+          <div class="reveal glass rounded-2xl p-8">
+            <h3 class="font-mono text-sm font-semibold uppercase tracking-widest text-neon">Certifications</h3>
+            <div class="mt-6 space-y-6">
+              <div class="flex items-start gap-4 rounded-xl bg-white/[.02] p-5 ring-1 ring-white/5 transition hover:ring-neon/30">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-amber-400/10 text-amber-300 ring-1 ring-amber-400/20">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.563.563 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5z" /></svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">AWS Certified Solutions Architect – Associate</h4>
+                  <p class="mt-1 font-mono text-xs text-slate-500">C03 · Valid 2024 — 2027</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 rounded-xl bg-white/[.02] p-5 ring-1 ring-white/5 transition hover:ring-neon/30">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-neon/10 text-neon ring-1 ring-neon/20">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" /></svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Alibaba Cloud Global Apsara Clouder – Big Data</h4>
+                  <p class="mt-1 font-mono text-xs text-slate-500">Valid 2023 — 2025</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="reveal glass rounded-2xl p-8">
+            <h3 class="font-mono text-sm font-semibold uppercase tracking-widest text-neon">Education</h3>
+            <div class="mt-6 space-y-6">
+              <div class="flex items-start gap-4 rounded-xl bg-white/[.02] p-5 ring-1 ring-white/5 transition hover:ring-neonalt/30">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-neonalt/10 text-neonalt ring-1 ring-neonalt/20">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" /></svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Bachelor of Computer Science</h4>
+                  <p class="mt-1 text-sm text-slate-400">University of the People</p>
+                  <p class="mt-1 font-mono text-xs text-slate-500">2023 — Present</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4 rounded-xl bg-white/[.02] p-5 ring-1 ring-white/5 transition hover:ring-neonalt/30">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300 ring-1 ring-cyan-400/20">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-white">Electronic Engineering</h4>
+                  <p class="mt-1 text-sm text-slate-400">University of Technology (Yatanarpon Cyber City)</p>
+                  <p class="mt-1 font-mono text-xs text-slate-500">3rd Year · 2017 — 2020 · Suspended</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="px-6 py-24">
+      <div class="mx-auto max-w-7xl">
+        <div class="reveal gradient-border relative overflow-hidden rounded-3xl p-10 sm:p-14">
+          <div class="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-neon/10 blur-3xl"></div>
+          <div class="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-neonalt/10 blur-3xl"></div>
+
+          <div class="relative grid items-center gap-12 lg:grid-cols-[1fr_.9fr]">
+            <div>
+              <p class="font-mono text-sm text-neon">// 07. contact</p>
+              <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Let's build something reliable.</h2>
+              <p class="mt-4 max-w-xl leading-relaxed text-slate-400">
+                I'm currently open to Cloud, DevOps, and SRE opportunities. Whether it's hardening
+                infrastructure, automating pipelines, or architecting the next platform — let's talk.
+              </p>
+              <div class="mt-8 space-y-3 text-sm">
+                <a href="mailto:thanhtikesoe.mc@gmail.com" class="group flex items-center gap-3 text-slate-300 transition hover:text-neon">
+                  <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-neon/10 ring-1 ring-neon/20">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+                  </span>
+                  thanhtikesoe.mc@gmail.com
+                </a>
+                <a href="tel:+959984986349" class="group flex items-center gap-3 text-slate-300 transition hover:text-neon">
+                  <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-neonalt/10 ring-1 ring-neonalt/20">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25z" /></svg>
+                  </span>
+                  +959 984 986 349
+                </a>
+                <div class="flex items-center gap-3 text-slate-300">
+                  <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-400/10 ring-1 ring-cyan-400/20">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0z" /></svg>
+                  </span>
+                  No 30, MoeMaKha St, Sanchaung Tps
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-4">
+              <a href="https://www.linkedin.com/in/than-htike-soe-07b77925a" target="_blank" rel="noopener noreferrer"
+                 class="group flex items-center justify-between rounded-xl bg-white/[.03] px-6 py-5 ring-1 ring-white/10 transition hover:ring-neon/40 hover:bg-neon/5">
+                <span class="flex items-center gap-4">
+                  <span class="text-neon"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg></span>
+                  <span class="text-left">
+                    <span class="block text-sm font-semibold text-white">LinkedIn</span>
+                    <span class="block font-mono text-xs text-slate-500">/in/than-htike-soe</span>
+                  </span>
+                </span>
+                <svg class="h-5 w-5 text-slate-500 transition group-hover:translate-x-1 group-hover:text-neon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+              </a>
+              <a href="https://github.com/tahs01" target="_blank" rel="noopener noreferrer"
+                 class="group flex items-center justify-between rounded-xl bg-white/[.03] px-6 py-5 ring-1 ring-white/10 transition hover:ring-neonalt/40 hover:bg-neonalt/5">
+                <span class="flex items-center gap-4">
+                  <span class="text-neonalt"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.35.96.11-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.97 10.97 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.15 0 .31.21.67.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></span>
+                  <span class="text-left">
+                    <span class="block text-sm font-semibold text-white">GitHub</span>
+                    <span class="block font-mono text-xs text-slate-500">github.com/tahs01</span>
+                  </span>
+                </span>
+                <svg class="h-5 w-5 text-slate-500 transition group-hover:translate-x-1 group-hover:text-neonalt" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-white/5 px-6 py-10">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row">
+      <p class="font-mono text-sm text-slate-500">
+        <span class="text-neon">~/</span>thanhtikesoe · <span id="year" class="text-slate-400"></span>
+      </p>
+      <p class="font-mono text-xs text-slate-600">Designed &amp; built with Tailwind CSS · Dark mode enabled</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal:not(.in-view)').forEach(el => observer.observe(el));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
